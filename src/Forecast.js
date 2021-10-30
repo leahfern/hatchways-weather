@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import axios from 'axios'
 import WeatherTiles from './WeatherTiles'
+import Title from './Title'
 
-const apiKey = '034a8a2f3d91707908cb225f36b2cd3a'
+const apiKey = process.env.REACT_APP_WEATHER_API_KEY
 
 const cities =
   {
@@ -10,11 +11,26 @@ const cities =
       name: 'Redondo Beach, CA',
       lat: '33.86',
       lon: '-118.38'
+    },
+    Pittsburgh: {
+      name: 'Pittsburgh, PA',
+      lat: '40.58',
+      lon: '-79.89'
+    },
+    Morgantown: {
+      name: 'Morgantown, WV',
+      lat: '39.67',
+      lon: '-79.96'
+    },
+    Valparaiso: {
+      name: 'Valparaiso, Chile',
+      lat: '-33.04',
+      lon: '-71.63'
     }
   }
 
 export default function Forecast() {
-  const [city] = useState(cities.Redondo)
+  const [city, setCity] = useState(cities.Redondo)
   const [weatherData, setWeatherData] = useState([])
   const [loading, setLoading] = useState(false)
 
@@ -48,9 +64,9 @@ export default function Forecast() {
       .get(`https://api.openweathermap.org/data/2.5/onecall?lat=${city.lat}&lon=${city.lon}&units=imperial&exclude=hourly,minutely&appid=${apiKey}`)
       .then((res) => {
         setWeatherData(trimData(res.data))
-        setTimeout(() => {
+        // setTimeout(() => {
           setLoading(false)
-        }, 300)
+        // }, 300)
       })
       .catch((err) => {
         alert(err.response.data.message)
@@ -59,6 +75,7 @@ export default function Forecast() {
 
   return (
     <div>
+      <Title city={city} setCity={setCity} cities={cities}/>
       <WeatherTiles weatherData={weatherData} loading={loading}/>
     </div>
   )

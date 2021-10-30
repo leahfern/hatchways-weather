@@ -7,7 +7,7 @@ export default function WeatherTiles(props) {
     <div className="weatherTiles">
     {
       props.loading
-      ? <div>Loading...</div>
+      ? <div className="loading">Loading...</div>
       : props.weatherData.map((obj, index) => {
           return (
             <WeatherTile weather={obj} key={index} />

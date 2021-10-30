@@ -27,7 +27,8 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
+  box-sizing: border-box;
 }
 ol, ul {
 	list-style: none;
@@ -72,6 +73,8 @@ code {
   align-items: center;
   padding: 20px 15px;
   font-weight: 600;
+  min-width: 100px;
+  min-height: 134px;
 }
 .weatherTile > div {
   display: flex;
@@ -97,8 +100,62 @@ code {
   height: 100%;
   margin: 0 auto;
 }
-h1 {
+.title h1 {
   text-align: center;
-  font-size: 36px;
-  padding: 20px;
+  padding: 10px;
+  color: white;
+  background: rgba(0,0,0,.5);
+}
+.title {
+  /* background-color: blue; */
+  width: 650px;
+  height: 200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.backgroundRedondo {
+  background-image: url(./images/redondo.jpeg);
+  background-position-y: center;
+  background-position-x: center;
+  background-size: cover;
+}
+.backgroundPittsburgh {
+  background-image: url(./images/pittsburgh.jpeg);
+  background-size: cover;
+  background-position-y: 25%;
+}
+.backgroundMorgantown {
+  background-image: url(./images/morgantown.jpeg);
+  background-size: cover;
+  background-position-y: 40%;
+}
+.backgroundValparaiso {
+  background-image: url(./images/valparaiso.jpeg);
+  background-size: cover;
+  background-position-y: 25%;
+}
+.title h1, .title select {
+  font-size: 24px;
+}
+.title select {
+  color: white;
+  outline: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  text-align: center;
+  border-color: white;
+  background: transparent;
+  margin-left: 10px;
+}
+.loading {
+  height: 174px;
+  width: 650px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
