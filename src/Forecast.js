@@ -44,8 +44,13 @@ export default function Forecast() {
 
   useEffect(() => {
     setLoading(true)
+    const url = `./netlify/functions/weather`
+    try {
+      fetch(url)
+      .then()
+    }
     axios
-      .get(`https://api.openweathermap.org/data/2.5/onecall?lat=${city.lat}&lon=${city.lon}&units=imperial&exclude=hourly,minutely&appid=${apiKey}`)
+      .get(url)
       .then((res) => {
         setWeatherData(trimData(res.data))
         setTimeout(() => {
