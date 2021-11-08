@@ -1,8 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import axios from 'axios'
 import WeatherTiles from './WeatherTiles'
-
-const apiKey = '034a8a2f3d91707908cb225f36b2cd3a'
 
 const cities =
   {
@@ -43,23 +40,20 @@ export default function Forecast() {
   }
 
   useEffect(() => {
-    setLoading(true)
-    const url = `./netlify/functions/weather`
-    try {
-      fetch(url)
-      .then()
+    async function fetchWeather() {
+      const url = `/.netlify/functions/weather?lat=${city.lat}&lon=${city.lon}`;
+      try {
+        setLoading(true)
+        const weather = await fetch(url).then((res) => res.json());
+        console.log(weather)
+        setWeatherData(trimData(weather.data))
+      } catch (err) {
+        alert(err)
+      } finally {
+        setLoading(false)
+      }
     }
-    axios
-      .get(url)
-      .then((res) => {
-        setWeatherData(trimData(res.data))
-        setTimeout(() => {
-          setLoading(false)
-        }, 300)
-      })
-      .catch((err) => {
-        alert(err.response.data.message)
-      })
+    fetchWeather();
   }, [city, trimData])
 
   return (
