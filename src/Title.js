@@ -7,6 +7,7 @@ export default function Title(props) {
 
   const [cityNames] = useState([])
   const [cityValues] = useState([])
+  const [showToolTip, setShowToolTip] = useState(false)
 
   useEffect(() => {
       for (const place in cities) {
@@ -23,12 +24,12 @@ export default function Title(props) {
     <div className={`title background${cityValues[cityNames.indexOf(city.name)]}`}>
       <h1>Weather forecast for 
         <select onChange={handleSelect}>
-        <option key="Redondo" value="Redondo">Redondo Beach, CA</option>
-        <option key="Pittsburgh" value="Pittsburgh">Pittsburgh, PA</option>
-        <option key="Morgantown" value="Morgantown">Morgantown, WV</option>
-        <option key="Valparaiso" value="Valparaiso">Valparaiso, Chile</option>
-
+          <option key="Redondo" value="Redondo">Redondo Beach, CA</option>
+          <option key="Pittsburgh" value="Pittsburgh">Pittsburgh, PA</option>
+          <option key="Morgantown" value="Morgantown">Morgantown, WV</option>
+          <option key="Valparaiso" value="Valparaiso">Valparaiso, Chile</option>
         </select>
+        <span className="tooltip material-icons">help</span>
       </h1>
     </div>
   )

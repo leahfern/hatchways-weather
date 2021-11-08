@@ -2,8 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react'
 import axios from 'axios'
 import WeatherTiles from './WeatherTiles'
 import Title from './Title'
-
-const apiKey = process.env.REACT_APP_WEATHER_API_KEY
+// import something from '../.netlify/'
 
 const cities =
   {
@@ -59,19 +58,23 @@ export default function Forecast() {
   }
 
   useEffect(() => {
-    setLoading(true)
-    axios
-      .get(`https://api.openweathermap.org/data/2.5/onecall?lat=${city.lat}&lon=${city.lon}&units=imperial&exclude=hourly,minutely&appid=${apiKey}`)
-      .then((res) => {
-        setWeatherData(trimData(res.data))
-        // setTimeout(() => {
-          setLoading(false)
-        // }, 300)
-      })
-      .catch((err) => {
-        alert(err.response.data.message)
-      })
+    async function fetchWeather() {
+      const url = `/.netlify/functions/weather?lat=${city.lat}&lon=${city.lon}`;
+      // const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${city.lat}&lon=${city.lon}&units=imperial&exclude=hourly,minutely&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
+      try {
+        setLoading(true)
+        const weather = await fetch(url).then((res) => res.json());
+        console.log(weather)
+        setWeatherData(trimData(weather.data))
+      } catch (err) {
+        alert(err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchWeather();
   }, [city, trimData])
+
 
   return (
     <div>
