@@ -7,7 +7,6 @@ export default function Title(props) {
 
   const [cityNames] = useState([]);
   const [cityValues] = useState([]);
-  // const [showToolTip, setShowToolTip] = useState(false)
 
   useEffect(() => {
     for (const place in cities) {
@@ -40,7 +39,6 @@ export default function Title(props) {
             Valparaiso, Chile
           </option>
         </select>
-        <span className="tooltip material-icons">help</span>
       </h1>
     </div>
   );
