@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import axios from 'axios'
 import WeatherTiles from './WeatherTiles'
 import Title from './Title'
 // import something from '../.netlify/'

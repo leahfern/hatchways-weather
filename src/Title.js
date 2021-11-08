@@ -7,7 +7,7 @@ export default function Title(props) {
 
   const [cityNames] = useState([])
   const [cityValues] = useState([])
-  const [showToolTip, setShowToolTip] = useState(false)
+  // const [showToolTip, setShowToolTip] = useState(false)
 
   useEffect(() => {
       for (const place in cities) {
