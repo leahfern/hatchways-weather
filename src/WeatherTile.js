@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
 export default function WeatherTile(props) {
-  const weather = props.weather
+  const weather = props.weather;
   return (
     <div className="weatherTile">
       <h4>{weather.weekday}</h4>
@@ -11,5 +11,5 @@ export default function WeatherTile(props) {
         <div>{weather.min}</div>
       </div>
     </div>
-  )
+  );
 }
